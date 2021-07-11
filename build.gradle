@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0-beta-4'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
