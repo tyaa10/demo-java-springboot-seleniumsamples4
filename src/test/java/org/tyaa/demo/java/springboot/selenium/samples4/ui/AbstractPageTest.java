@@ -4,25 +4,30 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.IndexPage;
 
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractPageTest {
 
+    private static final Logger logger
+        = LoggerFactory.getLogger(AbstractPageTest.class);
+    private static BrowserDriverFactory driverFactory;
     protected static WebDriver driver;
 
     private IndexPage indexPage;
 
     @BeforeAll
     private static void setupAll() {
-        System.setProperty("webdriver.gecko.driver", "drivers/geckodriver");
+        String browser = System.getProperty("browser");
+        driverFactory = new BrowserDriverFactory(browser, logger);
     }
 
     @BeforeEach
     private void setupEach() {
-        driver = new FirefoxDriver();
+        driver = driverFactory.getDriver();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
