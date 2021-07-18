@@ -15,6 +15,7 @@ public class IndexPage extends AbstractPage {
     private By agreeAndProceedButton = By.cssSelector(".call");
     private By closeButton = By.cssSelector(".close");
     private By navLinks = By.cssSelector(".primary-navigation a");
+    private By errorMessageBlock = By.cssSelector(".error-message");
 
     private Integer navLinksCount = 0;
     private Integer frameLevelCounter = 0;
@@ -80,7 +81,7 @@ public class IndexPage extends AbstractPage {
         return clickAgreeAndProceedButton().clickCloseButton();
     }
 
-    public void goThroughAllThePages() throws InterruptedException {
+    public void goThroughAllThePages() throws Exception {
         List<WebElement> navigationLinkElements = driver.findElements(navLinks);
         this.navLinksCount = navigationLinkElements.size();
         /* for (WebElement navLinkElement: navigationLinkElements) {
@@ -98,6 +99,9 @@ public class IndexPage extends AbstractPage {
             navLinkElement = navLinkElement.findElement(By.cssSelector("a"));
             navLinkElement.click();
             Thread.sleep(1000);
+            if (!checkContent()) {
+                throw new Exception(String.format("Page %s Not Found", navLinkElement.getText()));
+            }
             driver.navigate().back();
         }
     }
@@ -111,6 +115,14 @@ public class IndexPage extends AbstractPage {
         } catch (NoSuchElementException ex) {}
         driver.switchTo().defaultContent();
         return new IndexPage(driver);
+    }
+
+    public boolean checkContent() {
+        WebElement errorBlock = null;
+        try {
+            errorBlock = driver.findElement(errorMessageBlock);
+        } catch (NoSuchElementException ex) {}
+        return !(driver.getCurrentUrl().contains("403") || driver.getCurrentUrl().contains("404")) && errorBlock == null;
     }
 
     /* public String getLogOutButtonText() {
