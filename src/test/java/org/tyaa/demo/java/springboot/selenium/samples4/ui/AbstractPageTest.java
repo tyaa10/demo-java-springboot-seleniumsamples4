@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.IndexPage;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.TimeUnit;
 
 public abstract class AbstractPageTest {
@@ -22,11 +23,12 @@ public abstract class AbstractPageTest {
     @BeforeAll
     private static void setupAll() {
         String browser = System.getProperty("browser");
-        driverFactory = new BrowserDriverFactory(browser, logger);
+        driverFactory =
+            new BrowserDriverFactory(browser, logger);
     }
 
     @BeforeEach
-    private void setupEach() {
+    private void setupEach() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         driver = driverFactory.getDriver();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         driver.manage().window().maximize();
