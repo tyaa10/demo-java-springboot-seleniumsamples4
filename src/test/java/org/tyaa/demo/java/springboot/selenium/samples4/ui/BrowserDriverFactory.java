@@ -68,6 +68,6 @@ public class BrowserDriverFactory {
         return (WebDriver) browserDriverClassConstructor.newInstance((Object) null);
         *
         * */
-        return (WebDriver) browserDriverClass.getConstructor().newInstance(null);
+        return (WebDriver) browserDriverClass.getConstructor().newInstance();
     }
 }

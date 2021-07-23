@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.IndexPage;
+import org.tyaa.demo.java.springboot.selenium.samples4.ui.utils.FileReaders;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,7 +41,9 @@ public class IndexPageTest extends AbstractPageTest {
         IndexPage newIndexPage = getIndexPage().agreeCookies();
         assertNotNull(newIndexPage);
         setIndexPage(newIndexPage);
-        assertTrue(getIndexPage().checkContent());
+        assertTrue(
+            (urlString.contains("403") || urlString.contains("404")) != getIndexPage().checkContent()
+        );
     }
 
     // @EnabledIf("false")
@@ -63,19 +66,6 @@ public class IndexPageTest extends AbstractPageTest {
     }
 
     private Stream<String> getIndexUrlStrings() {
-        Stream<String> urls = null;
-        try {
-            BufferedReader reader =
-                new BufferedReader(
-                    new FileReader(
-                        new File("src/test/resources/urls/starbucks.txt")
-                            .getAbsoluteFile()
-                    )
-                );
-            urls = reader.lines();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return urls;
+        return FileReaders.readStrings("src/test/resources/urls/starbucks.txt");
     }
 }

@@ -16,6 +16,7 @@ public class IndexPage extends AbstractPage {
     private By closeButton = By.cssSelector(".close");
     private By navLinks = By.cssSelector(".primary-navigation a");
     private By errorMessageBlock = By.cssSelector(".error-message");
+    private By loginButton = By.cssSelector(".secondary-navigation .login-button > a");
 
     private Integer navLinksCount = 0;
     private Integer frameLevelCounter = 0;
@@ -123,6 +124,12 @@ public class IndexPage extends AbstractPage {
             errorBlock = driver.findElement(errorMessageBlock);
         } catch (NoSuchElementException ex) {}
         return !(driver.getCurrentUrl().contains("403") || driver.getCurrentUrl().contains("404")) && errorBlock == null;
+    }
+
+    public LoginPage clickLoginButton() {
+        WebElement loginButtonElement = driver.findElement(loginButton);
+        loginButtonElement.click();
+        return new LoginPage(driver);
     }
 
     /* public String getLogOutButtonText() {
