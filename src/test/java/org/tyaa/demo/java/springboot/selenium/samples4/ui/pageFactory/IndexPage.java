@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.signup.SignUpPage;
 
 import java.util.List;
 
@@ -15,8 +16,8 @@ public class IndexPage extends AbstractPage {
     private By agreeAndProceedButton = By.cssSelector(".call");
     private By closeButton = By.cssSelector(".close");
     private By navLinks = By.cssSelector(".primary-navigation a");
-    private By errorMessageBlock = By.cssSelector(".error-message");
-    private By loginButton = By.cssSelector(".secondary-navigation .login-button > a");
+    private By loginButton = By.cssSelector(".secondary-navigation > .login-button > a");
+    private By signUpButton = By.cssSelector(".secondary-navigation > li:last-child > a");
 
     private Integer navLinksCount = 0;
     private Integer frameLevelCounter = 0;
@@ -118,18 +119,16 @@ public class IndexPage extends AbstractPage {
         return new IndexPage(driver);
     }
 
-    public boolean checkContent() {
-        WebElement errorBlock = null;
-        try {
-            errorBlock = driver.findElement(errorMessageBlock);
-        } catch (NoSuchElementException ex) {}
-        return !(driver.getCurrentUrl().contains("403") || driver.getCurrentUrl().contains("404")) && errorBlock == null;
-    }
-
     public LoginPage clickLoginButton() {
         WebElement loginButtonElement = driver.findElement(loginButton);
         loginButtonElement.click();
         return new LoginPage(driver);
+    }
+
+    public SignUpPage clickSignUpButton() {
+        WebElement signUpButtonElement = driver.findElement(signUpButton);
+        signUpButtonElement.click();
+        return new SignUpPage(driver);
     }
 
     /* public String getLogOutButtonText() {
