@@ -1,12 +1,20 @@
 package org.tyaa.demo.java.springboot.selenium.samples4.ui.utils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class FileReaders {
+    public static String readString(String filePath) {
+        String string = "";
+        try {
+            string = Files.readString(Paths.get(filePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return string;
+    }
     public static Stream<String> readStrings(String filePath) {
         Stream<String> urls = null;
         try {
