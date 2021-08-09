@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 public class VerificationPage extends SignUpWelcomePage {
     public VerificationPage(WebDriver driver) {
         super(driver);
-        System.out.printf("%s Loaded", VerificationPage.class.getName());
     }
     @Override
     public boolean checkContent() {

@@ -5,9 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.documentFactory.ActivationMailDocument;
-import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.AccountPage;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.IndexPage;
-import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.LoginPage;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.signup.SignUpPage;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.signup.SignUpWelcomePage;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.signup.VerificationPage;
@@ -17,6 +15,7 @@ import org.tyaa.demo.java.springboot.selenium.samples4.ui.utils.Mailer;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,9 +29,9 @@ public class SignUpPageTest extends AbstractPageTest {
     public void givenSignUpPage_whenSignedUp_thenReceivedMail(
         String urlString, String firstName, String lastName,
         String languageCode, String email, String password
-    ) throws MessagingException, IOException, InterruptedException {
+    ) throws MessagingException, IOException, InterruptedException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         // 1. вход на форму регистрации и ее отправка
-        /* System.out.printf("urlString = %s\n", urlString);
+        System.out.printf("urlString = %s\n", urlString);
         System.out.println("firstName = " + firstName);
         System.out.println("lastName = " + lastName);
         System.out.println("languageCode = " + languageCode);
@@ -40,10 +39,10 @@ public class SignUpPageTest extends AbstractPageTest {
         System.out.println("password = " + password);
         assertNotNull(urlString);
         assertNotEquals("", urlString);
-        setIndexPage(urlString);
-        IndexPage newIndexPage = getIndexPage().agreeCookies();
-        assertNotNull(newIndexPage);
-        SignUpPage signUpPage = newIndexPage.clickSignUpButton();
+        IndexPage newStartPage =
+            openStartPage(urlString).agreeCookies();
+        assertNotNull(newStartPage);
+        SignUpPage signUpPage = newStartPage.clickSignUpButton();
         assertNotNull(signUpPage);
         assertTrue(signUpPage.checkContent());
         VerificationPage verificationPage = null;
@@ -54,7 +53,7 @@ public class SignUpPageTest extends AbstractPageTest {
             fail("Registration failed, verification page not found, or content is incorrect ");
         }
         assertNotNull(verificationPage);
-        assertTrue(verificationPage.checkContent()); */
+        assertTrue(verificationPage.checkContent());
         // 2. чтение предпоследнего непросмотренного письма из почтового ящика,
         // адрес которого был указан при регистрации
         /* System.out.println("Waiting for mails: 10 seconds...");

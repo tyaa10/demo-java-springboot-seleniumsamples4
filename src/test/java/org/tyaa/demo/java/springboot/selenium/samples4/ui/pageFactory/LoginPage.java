@@ -3,6 +3,9 @@ package org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.tyaa.demo.java.springboot.selenium.samples4.ui.models.TextItem;
+
+import java.util.Map;
 
 /* PageObject для страницы входа в учетную запись */
 public class LoginPage extends AbstractPage {
@@ -18,7 +21,6 @@ public class LoginPage extends AbstractPage {
     private WebElement submitButton;
     public LoginPage(WebDriver driver) {
         super(driver);
-        System.out.printf("%s Loaded", LoginPage.class.getName());
     }
     @Override
     public boolean checkContent() {

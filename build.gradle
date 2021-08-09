@@ -19,6 +19,8 @@ dependencies {
 	testImplementation 'org.apache.commons:commons-lang3:3.9'
 	testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.5.3'
 	testImplementation 'org.jsoup:jsoup:1.14.1'
+	testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.4'
+
 
 }
 

@@ -5,10 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import org.tyaa.demo.java.springboot.selenium.samples4.ui.models.TextItem;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.AbstractPage;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.AccountPage;
 
 import java.util.List;
+import java.util.Map;
 
 /* PageObject для страницы регистрации учетной записи */
 public class SignUpPage extends AbstractPage {
@@ -38,8 +40,8 @@ public class SignUpPage extends AbstractPage {
     private WebElement submitButton;
     public SignUpPage(WebDriver driver) {
         super(driver);
-        System.out.printf("%s Loaded", SignUpPage.class.getName());
     }
+
     public VerificationPage signUp(
         String firstName, String lastName,
         String languageCode,

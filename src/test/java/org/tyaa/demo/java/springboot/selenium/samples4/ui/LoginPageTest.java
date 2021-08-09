@@ -12,10 +12,7 @@ import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.IndexPage;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.LoginPage;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.utils.FileReaders;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.lang.reflect.InvocationTargetException;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,7 +25,7 @@ public class LoginPageTest extends AbstractPageTest {
     @Order(1)
     public void givenLoginPage_whenSignedIn_thenSignedContentFound(
         String localeCode, String email, String password
-    ) throws InterruptedException {
+    ) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         String urlString = "https://www.starbucks.co.uk/";
         if (!localeCode.equals("uk")) {
             urlString = String.format("https://www.starbucks.%s/", localeCode);
@@ -38,10 +35,10 @@ public class LoginPageTest extends AbstractPageTest {
         System.out.println("password = " + password);
         assertNotNull(urlString);
         assertNotEquals("", urlString);
-        setIndexPage(urlString);
-        IndexPage newIndexPage = getIndexPage().agreeCookies();
-        assertNotNull(newIndexPage);
-        LoginPage loginPage = newIndexPage.clickLoginButton();
+        IndexPage newStartPage =
+            openStartPage(urlString).agreeCookies();
+        assertNotNull(newStartPage);
+        LoginPage loginPage = newStartPage.clickLoginButton();
         assertNotNull(loginPage);
         assertTrue(loginPage.checkContent());
         AccountPage accountPage = null;

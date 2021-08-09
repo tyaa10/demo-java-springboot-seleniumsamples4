@@ -12,7 +12,6 @@ import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.AbstractPa
 public class EmailPreferencesUpdatedPage extends SignUpWelcomePage {
     public EmailPreferencesUpdatedPage(WebDriver driver) {
         super(driver);
-        System.out.printf("%s Loaded", EmailPreferencesUpdatedPage.class.getName());
     }
     @Override
     public boolean checkContent() {

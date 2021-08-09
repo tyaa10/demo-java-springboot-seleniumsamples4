@@ -4,12 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.tyaa.demo.java.springboot.selenium.samples4.ui.models.TextItem;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.signup.SignUpPage;
 
 import java.util.List;
+import java.util.Map;
 
 /* PageObject для начальной страницы веб-приложения - index.html */
 public class IndexPage extends AbstractPage {
+
     // для кнопки "Agree and Proceed" подготавливаем только селектор,
     // потому что она будет отображаться только при первом посещении
     // веб-приложения клиентом
@@ -19,12 +23,14 @@ public class IndexPage extends AbstractPage {
     private By loginButton = By.cssSelector(".secondary-navigation > .login-button > a");
     private By signUpButton = By.cssSelector(".secondary-navigation > li:last-child > a");
 
+    private By header = By.cssSelector("main > div > section > div > div > div > h2");
+    private By snippet = By.cssSelector("main > div > section > div > div > div > p");
+
     private Integer navLinksCount = 0;
     private Integer frameLevelCounter = 0;
 
     public IndexPage(WebDriver driver) {
         super(driver);
-        System.out.println("IndexPage Loaded");
     }
 
     public IndexPage clickAgreeAndProceedButton() {
@@ -86,18 +92,13 @@ public class IndexPage extends AbstractPage {
     public void goThroughAllThePages() throws Exception {
         List<WebElement> navigationLinkElements = driver.findElements(navLinks);
         this.navLinksCount = navigationLinkElements.size();
-        /* for (WebElement navLinkElement: navigationLinkElements) {
-            navLinkElement.click();
-            Thread.sleep(3000);
-            driver.navigate().back();
-        } */
         for (int i = 1; i <= this.navLinksCount; i++) {
             WebElement navLinkElement =
-                 driver.findElement(
-                     By.cssSelector(
-                         String.format(".primary-navigation li:nth-child(%d)", i)
-                     )
-                 );
+                driver.findElement(
+                    By.cssSelector(
+                        String.format(".primary-navigation li:nth-child(%d)", i)
+                    )
+                );
             navLinkElement = navLinkElement.findElement(By.cssSelector("a"));
             navLinkElement.click();
             Thread.sleep(1000);
@@ -130,10 +131,4 @@ public class IndexPage extends AbstractPage {
         signUpButtonElement.click();
         return new SignUpPage(driver);
     }
-
-    /* public String getLogOutButtonText() {
-        List<WebElement> logOutButtonElement =
-            driver.findElements(logOutButton);
-        return !logOutButtonElement.isEmpty() ? logOutButtonElement.get(0).getText() : null;
-    } */
 }

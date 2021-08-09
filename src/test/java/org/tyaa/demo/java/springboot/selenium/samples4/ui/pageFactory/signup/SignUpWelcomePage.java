@@ -5,8 +5,11 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.tyaa.demo.java.springboot.selenium.samples4.ui.models.TextItem;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.AbstractPage;
 import org.tyaa.demo.java.springboot.selenium.samples4.ui.pageFactory.AccountPage;
+
+import java.util.Map;
 
 /* PageObject для страницы, отображающейся после регистрации учетной записи
 * и подтверждения электронной почты */
@@ -15,7 +18,6 @@ public class SignUpWelcomePage extends AbstractPage {
     protected WebElement welcomeBlock;
     public SignUpWelcomePage(WebDriver driver) {
         super(driver);
-        System.out.printf("%s Loaded", SignUpWelcomePage.class.getName());
     }
     @Override
     public boolean checkContent() {
