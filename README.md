@@ -38,3 +38,6 @@
 - мультибраузерное тестирование
 - симуляция работы пользователя с письмами подтверждения (Gmail)
 - интеграция с Google Spreadsheet (считывание текстов для сравнения с содержимым веб-страниц, сохранение подробных результатов сравнения)
+## Примечания
+- каждый почтовый ящик Gmail можно использовать для регистрации однократно, имя и пароль указываются в строке 12 файла src/test/java/org/tyaa/demo/java/springboot/selenium/samples4/ui/utils/Mailer.java 
+- инструкция по доступу проекта тестов к документам Google Spreadsheet через RESTful API: https://docs.google.com/document/d/1XhLd7J38CoiqqvQKL8XV5n9jxsAWBz_cPqv1Ua9a0hw/edit?usp=sharing
