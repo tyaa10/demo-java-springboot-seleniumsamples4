@@ -35,7 +35,7 @@ public abstract class AbstractPageTest {
             GoogleSpreadSheetsTextStorage.RESOURCE_INFO_SPREADSHEET_ID_KEY,
             "1j_VVROTAcI9CwIohEIMZFhqpYggoDFGiKiQssu7f-vQ",
             GoogleSpreadSheetsTextStorage.RESOURCE_INFO_ACCESS_TOKEN,
-            "ya29.a0ARrdaM8GtbM_DcBKgvRAurItG-9XGLKO7WuQEFx0ZXfcZT1eVVSRnhxhWKf2VepLDV7rHOfhdUX3zohHy2CRZuVbyb346nGOyD2uKwCK1HeQ5JJOcLI7Qt7fFN6VaOyy6aW3WVnu2bmyXpXBU6d2wDj5IIKq"
+            "ya29.a0ARrdaM8Cg2kGqwsCn8nHPW0D-fGL9F6In2yZet2kGeKEkwWFiuwqlsyipgEIKlvj6fIkbldWgxB2xnMeixd4k7vh8P1fwIgdxpB-QDKrILzGlCR9Rd5Lxcymv5QfeSO6AZk6lQ_NwIkjt8kxI_cJxpsMqjVoJA"
         ));
     }
 
